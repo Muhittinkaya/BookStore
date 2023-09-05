@@ -1,0 +1,1 @@
+insert into book(id, title, description, release_year) values('1','Ikigai', 'Japanese', '2018')
