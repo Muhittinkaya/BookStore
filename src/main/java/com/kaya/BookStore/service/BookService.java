@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class BookService {
@@ -21,6 +23,10 @@ public class BookService {
     }
 
     public List<BookDto> getBooks() {
-        return new ArrayList<>();
+        var books = bookRepository.findAll();
+
+        return StreamSupport.stream(books.spliterator(), false)
+                .map(book -> modelMapper.map(books, BookDto.class))
+                .collect(Collectors.toList());
     }
 }
