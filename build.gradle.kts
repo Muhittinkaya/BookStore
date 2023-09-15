@@ -4,7 +4,6 @@ plugins {
 	id("io.spring.dependency-management") version "1.0.15.RELEASE"
 }
 
-apply(plugin = "jacoco")
 
 group = "com.kaya"
 version = "0.0.1-SNAPSHOT"
