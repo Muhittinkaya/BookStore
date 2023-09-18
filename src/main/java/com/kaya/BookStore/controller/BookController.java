@@ -1,6 +1,8 @@
 package com.kaya.BookStore.controller;
 
 import com.kaya.BookStore.dto.BookDto;
+import com.kaya.BookStore.service.BookService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,19 +15,12 @@ import java.util.List;
 @RequestMapping("/api/v1")
 public class BookController {
 
+    @Autowired
+    private BookService bookService;
+
     @GetMapping("/getBooks")
     public ResponseEntity<List<BookDto>> getBooks() {
-        BookDto book = BookDto.builder()
-                .title("Öz Şefkat")
-                .build();
-
-        BookDto bookSecond = BookDto.builder()
-                .title("Böyle Buyurdu Zerdüşt")
-                .build();
-
-        List<BookDto> books = new ArrayList<>();
-        books.add(book);
-        books.add(bookSecond);
+        var books =  bookService.getBooks();
 
         return ResponseEntity.ok(books);
     }
