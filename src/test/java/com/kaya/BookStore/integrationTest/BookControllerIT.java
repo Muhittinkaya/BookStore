@@ -33,14 +33,4 @@ public class BookControllerIT {
         assertThat(listOfBooks).isNotNull();
         assertThat(listOfBooks.length).isEqualTo(1);
     }
-
-    @Test
-    @Sql(scripts = {"classpath:initialBookRecordForTest.sql"})
-    void shouldReturnBooksWhenBookApiCalled1() {
-        BookDto[] listOfBooks = testRestTemplate
-                .getForObject("http://localhost:" + port + "/api/v1/getBooks", BookDto[].class);
-
-        assertThat(listOfBooks).isNotNull();
-        assertThat(listOfBooks.length).isEqualTo(1);
-    }
 }
